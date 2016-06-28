@@ -38,6 +38,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.R;
 
@@ -47,10 +48,10 @@ import java.util.ArrayList;
 public class ServiceTypePopAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<SERVICE_TYPE> mServiceTypeList;
+    private ArrayList<BUSINESS_TYPE> mServiceTypeList;
     private LayoutInflater mInflater;
 
-    public ServiceTypePopAdapter(Context context, ArrayList<SERVICE_TYPE> service_typeList) {
+    public ServiceTypePopAdapter(Context context, ArrayList<BUSINESS_TYPE> service_typeList) {
         this.mContext = context;
         this.mServiceTypeList = service_typeList;
         mInflater = LayoutInflater.from(context);
@@ -84,9 +85,9 @@ public class ServiceTypePopAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        SERVICE_TYPE service_type = mServiceTypeList.get(position);
-        if(service_type.title!=null){
-            holder.title.setText(service_type.title);
+        BUSINESS_TYPE service_type = mServiceTypeList.get(position);
+        if(service_type.BusinessDes!=null){
+            holder.title.setText(service_type.BusinessDes);
         }
 
         return convertView;

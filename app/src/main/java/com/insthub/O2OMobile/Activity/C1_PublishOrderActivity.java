@@ -128,12 +128,12 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
     private LocationInfoModel mLocationInfoModel;
     private HomeModel mHomeModel;
     private C1_PublishOrderAdapter mC1PublishOrderAdapter;
-    private SERVICE_TYPE mServiceType;
+    private BUSINESS_TYPE mServiceType;
     private int mServiceTypeId = 0;
     private int mDefaultReceiverId = 0;
     private String service_list;
     public static String DEFAULT_RECEIVER_ID = "default_receiver_id";
-    private ArrayList<SERVICE_TYPE> mServiceTypeList = new ArrayList<SERVICE_TYPE>();
+    private ArrayList<BUSINESS_TYPE> mServiceTypeList = new ArrayList<BUSINESS_TYPE>();
 
     private MediaPlayer mPlayer;
     private SharedPreferences mShared;
@@ -151,7 +151,7 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
         }
 
         Intent intent = getIntent();
-        mServiceType = (SERVICE_TYPE) intent.getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
+        mServiceType = (BUSINESS_TYPE) intent.getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
         mDefaultReceiverId = intent.getIntExtra(DEFAULT_RECEIVER_ID, 0);
         service_list = intent.getStringExtra("service_list");
 
@@ -192,8 +192,8 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                                     int position, long id) {
                 // TODO Auto-generated method stub
                 if (mDefaultReceiverId == 0) {
-                    mTitle.setText(mHomeModel.publicServiceTypeList.get(position).title);
-                    mServiceTypeId = mHomeModel.publicServiceTypeList.get(position).id;
+                    mTitle.setText(mHomeModel.publicServiceTypeList.get(position).BusinessDes);
+                    mServiceTypeId = mHomeModel.publicServiceTypeList.get(position).BusinessID;
                     mC1PublishOrderAdapter = new C1_PublishOrderAdapter(C1_PublishOrderActivity.this, mHomeModel.publicServiceTypeList, position);
                     mServiceTypeListview.setAdapter(mC1PublishOrderAdapter);
                     mClose.setVisibility(View.GONE);
@@ -208,8 +208,8 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                     };
                     mHandler.sendEmptyMessageDelayed(0, 200);
                 } else {
-                    mTitle.setText(mServiceTypeList.get(position).title);
-                    mServiceTypeId = mServiceTypeList.get(position).id;
+                    mTitle.setText(mServiceTypeList.get(position).BusinessDes);
+                    mServiceTypeId = mServiceTypeList.get(position).BusinessID;
                     mC1PublishOrderAdapter = new C1_PublishOrderAdapter(C1_PublishOrderActivity.this, mServiceTypeList, position);
                     mServiceTypeListview.setAdapter(mC1PublishOrderAdapter);
                     mClose.setVisibility(View.GONE);
@@ -359,7 +359,7 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                     myservicelistResponse response = new myservicelistResponse();
                     response.fromJson(userJson);
                     for (int i = 0; i < response.services.size(); i++) {
-                        SERVICE_TYPE service = new SERVICE_TYPE();
+                        BUSINESS_TYPE service = new BUSINESS_TYPE();
                         service = response.services.get(i).service_type;
                         mServiceTypeList.add(service);
                     }
@@ -368,11 +368,11 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                         mArrowImage.setVisibility(View.VISIBLE);
                         if (mServiceType != null) {
                             for (int i = 0; i < mServiceTypeList.size(); i++) {
-                                if (mServiceType.id == mServiceTypeList.get(i).id) {
+                                if (mServiceType.BusinessID == mServiceTypeList.get(i).BusinessID) {
                                     mC1PublishOrderAdapter = new C1_PublishOrderAdapter(this, mServiceTypeList, i);
                                     mServiceTypeListview.setAdapter(mC1PublishOrderAdapter);
-                                    mTitle.setText(mServiceTypeList.get(i).title);
-                                    mServiceTypeId = mServiceTypeList.get(i).id;
+                                    mTitle.setText(mServiceTypeList.get(i).BusinessDes);
+                                    mServiceTypeId = mServiceTypeList.get(i).BusinessID;
                                     break;
                                 }
                             }
@@ -810,11 +810,11 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                 mTitle.setText(getString(R.string.select_service));
             } else {
                 for (int i = 0; i < mHomeModel.publicServiceTypeList.size(); i++) {
-                    if (mServiceType.id == mHomeModel.publicServiceTypeList.get(i).id) {
+                    if (mServiceType.BusinessID == mHomeModel.publicServiceTypeList.get(i).BusinessID) {
                         mC1PublishOrderAdapter = new C1_PublishOrderAdapter(this, mHomeModel.publicServiceTypeList, i);
                         mServiceTypeListview.setAdapter(mC1PublishOrderAdapter);
-                        mTitle.setText(mHomeModel.publicServiceTypeList.get(i).title);
-                        mServiceTypeId = mHomeModel.publicServiceTypeList.get(i).id;
+                        mTitle.setText(mHomeModel.publicServiceTypeList.get(i).BusinessDes);
+                        mServiceTypeId = mHomeModel.publicServiceTypeList.get(i).BusinessID;
                         break;
                     }
                 }

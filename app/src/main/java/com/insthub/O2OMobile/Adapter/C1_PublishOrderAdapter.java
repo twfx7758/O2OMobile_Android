@@ -41,6 +41,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.R;
 
@@ -51,18 +52,18 @@ import java.util.Map;
 public class C1_PublishOrderAdapter extends BaseAdapter {
 
 	private Context mContext;
-	public List<SERVICE_TYPE> mList;
+	public List<BUSINESS_TYPE> mList;
 	private LayoutInflater mInflater;
 	public static Map<Integer, Boolean> isSelected;
 	
-	public C1_PublishOrderAdapter(Context context, List<SERVICE_TYPE> list) {
+	public C1_PublishOrderAdapter(Context context, List<BUSINESS_TYPE> list) {
 		this.mContext = context;
 		this.mList = list;
         mInflater = LayoutInflater.from(context);
 		init();
 	}
 	
-	public C1_PublishOrderAdapter(Context context, List<SERVICE_TYPE> list, int position) {
+	public C1_PublishOrderAdapter(Context context, List<BUSINESS_TYPE> list, int position) {
 		this.mContext = context;
 		this.mList = list;
         mInflater = LayoutInflater.from(context);
@@ -118,9 +119,9 @@ public class C1_PublishOrderAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		final SERVICE_TYPE service_type = mList.get(position);
-		if(service_type.title != null) {
-			holder.title.setText(service_type.title);
+		final BUSINESS_TYPE service_type = mList.get(position);
+		if(service_type.BusinessDes != null) {
+			holder.title.setText(service_type.BusinessDes);
 		}
 		
 		if(isSelected.get(position)) {

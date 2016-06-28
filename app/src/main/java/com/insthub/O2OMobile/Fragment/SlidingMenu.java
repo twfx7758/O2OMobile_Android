@@ -183,6 +183,7 @@ public class SlidingMenu extends RelativeLayout {
 
 	
 	/*拦截touch事件*/
+	/*
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 
@@ -196,11 +197,11 @@ public class SlidingMenu extends RelativeLayout {
 			mIsBeingDragged = false;
 			if (canSlideLeft) {
 				mMenuView.setVisibility(View.VISIBLE);
-				mDetailView.setVisibility(View.INVISIBLE);
+				//mDetailView.setVisibility(View.INVISIBLE);
 			}
 			if (canSlideRight) {
 				mMenuView.setVisibility(View.INVISIBLE);
-				mDetailView.setVisibility(View.VISIBLE);
+				//mDetailView.setVisibility(View.VISIBLE);
 			}
 			break;
 
@@ -252,7 +253,7 @@ public class SlidingMenu extends RelativeLayout {
 		return mIsBeingDragged;
 	}
 
-	/*处理拦截后的touch事件*/
+	处理拦截后的touch事件
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		if (mVelocityTracker == null) {
@@ -299,7 +300,7 @@ public class SlidingMenu extends RelativeLayout {
 				if (oldScrollX < 0)
                 {
                     mMenuView.setVisibility(View.VISIBLE);
-                    mDetailView.setVisibility(View.INVISIBLE);
+                    //mDetailView.setVisibility(View.INVISIBLE);
                     hideNoTouchMask();
                 }
 				if (deltaX < 0 && oldScrollX < 0) { // a2_menu view
@@ -393,7 +394,7 @@ public class SlidingMenu extends RelativeLayout {
 
 		return true;
 	}
-
+	*/
 	private int getMenuViewWidth() {
 		if (mMenuView == null) {
 			return 0;
@@ -415,7 +416,6 @@ public class SlidingMenu extends RelativeLayout {
 				mSlidingView.getScrollY(), duration);
 		invalidate();
 	}
-
 	/*
 	 * 显示左侧边的view
 	 * */

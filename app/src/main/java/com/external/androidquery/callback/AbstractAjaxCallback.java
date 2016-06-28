@@ -113,7 +113,7 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 	private String encoding = "UTF-8";
 	private WeakReference<Activity> act;
 	
-	private int method = Constants.METHOD_DETECT;
+	private int method = Constants.METHOD_POST;
 	private HttpUriRequest request;
 	
 	private boolean uiCallback = true;
@@ -1236,7 +1236,7 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 			if(Constants.METHOD_POST == method && params == null){
 				params = new HashMap<String, Object>();
 			}
-			
+
 			if(params == null){
 				httpGet(url, headers, status);	
 			}else{
@@ -1490,57 +1490,57 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 	}
 	
 	private void httpDo(HttpUriRequest hr, String url, Map<String, String> headers, AjaxStatus status) throws ClientProtocolException, IOException{
-		
+
 		if(AGENT != null){
 			hr.addHeader("User-Agent", AGENT);
-        }
-		
-		if(headers != null){
-        	for(String name: headers.keySet()){
-        		hr.addHeader(name, headers.get(name));
-        	}
-               
 		}
-		
+
+		if(headers != null){
+			for(String name: headers.keySet()){
+				hr.addHeader(name, headers.get(name));
+			}
+
+		}
+
 		if(GZIP && (headers == null || !headers.containsKey("Accept-Encoding"))){
 			hr.addHeader("Accept-Encoding", "gzip");
 		}
-			
+
 		String cookie = makeCookie();
 		if(cookie != null){
 			hr.addHeader("Cookie", cookie);
 		}
-		
+
 		if(ah != null){
 			ah.applyToken(this, hr);
 		}
-		
+
 		DefaultHttpClient client = getClient();
-		
+
 		HttpParams hp = hr.getParams();
 		if(proxy != null) hp.setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 		if(timeout > 0){
 			hp.setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, timeout);
 			hp.setParameter(CoreConnectionPNames.SO_TIMEOUT, timeout);
 		}
-		
-		HttpContext context = new BasicHttpContext(); 	
+
+		HttpContext context = new BasicHttpContext();
 		CookieStore cookieStore = new BasicCookieStore();
 		context.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-		
+
 		request = hr;
-		
+
 		if(abort){
 			throw new IOException("Aborted");
 		}
-		
+
 		HttpResponse response = null;
-		
+
 		try{
 			//response = client.execute(hr, context);
 			response = execute(hr, client, context);
 		}catch(HttpHostConnectException e){
-			
+
 			//if proxy is used, automatically retry without proxy
 			if(proxy != null){
 				AQUtility.debug("proxy failed, retrying without proxy");
@@ -1551,98 +1551,98 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 				throw e;
 			}
 		}
-		
-		
-        byte[] data = null;
-        
-        
-        String redirect = url;
-        
-        int code = response.getStatusLine().getStatusCode();
-        String message = response.getStatusLine().getReasonPhrase();
-        String error = null;
-        
-        HttpEntity entity = response.getEntity();
-       
-        File file = null;
-        
-        if(code < 200 || code >= 300){     
-        	
-        	InputStream is = null;
-        	
-        	try{
-        		
-        		if(entity != null){
-        		
-	        		is = entity.getContent();
-	        		byte[] s = toData(getEncoding(entity), is);
-	        		
-	        		error = new String(s, "UTF-8");
-	        		
-	        		AQUtility.debug("error", error);
-	        		
-        		}
-        	}catch(Exception e){
-        		AQUtility.debug(e);
-        	}finally{
-        		AQUtility.close(is);
-        	}
-        	
-        	
-        }else{
-        	
-			
+
+
+		byte[] data = null;
+
+
+		String redirect = url;
+
+		int code = response.getStatusLine().getStatusCode();
+		String message = response.getStatusLine().getReasonPhrase();
+		String error = null;
+
+		HttpEntity entity = response.getEntity();
+
+		File file = null;
+
+		if(code < 200 || code >= 300){
+
+			InputStream is = null;
+
+			try{
+
+				if(entity != null){
+
+					is = entity.getContent();
+					byte[] s = toData(getEncoding(entity), is);
+
+					error = new String(s, "UTF-8");
+
+					AQUtility.debug("error", error);
+
+				}
+			}catch(Exception e){
+				AQUtility.debug(e);
+			}finally{
+				AQUtility.close(is);
+			}
+
+
+		}else{
+
+
 			HttpHost currentHost = (HttpHost) context.getAttribute(ExecutionContext.HTTP_TARGET_HOST);
 			HttpUriRequest currentReq = (HttpUriRequest) context.getAttribute(ExecutionContext.HTTP_REQUEST);
-	        redirect = currentHost.toURI() + currentReq.getURI();
-			
-	        int size = Math.max(32, Math.min(1024 * 64, (int) entity.getContentLength()));
-	        
-	        OutputStream os = null;
-	        InputStream is = null;
-	        
-	        try{
-	        	file = getPreFile();
-	        
-		        if(file == null){
-		        	os = new PredefinedBAOS(size);
-		        }else{
-		        	file.createNewFile();
-		        	os = new BufferedOutputStream(new FileOutputStream(file));
-		        }
-		        
-		        is = entity.getContent();
+			redirect = currentHost.toURI() + currentReq.getURI();
+
+			int size = Math.max(32, Math.min(1024 * 64, (int) entity.getContentLength()));
+
+			OutputStream os = null;
+			InputStream is = null;
+
+			try{
+				file = getPreFile();
+
+				if(file == null){
+					os = new PredefinedBAOS(size);
+				}else{
+					file.createNewFile();
+					os = new BufferedOutputStream(new FileOutputStream(file));
+				}
+
+				is = entity.getContent();
 				if("gzip".equalsIgnoreCase(getEncoding(entity))){
 					is = new GZIPInputStream(is);
 				}
-		        
-		        copy(is, os, (int) entity.getContentLength());
-		        
-		        
-		        os.flush();
-		        
-		        if(file == null){
-		        	data = ((PredefinedBAOS) os).toByteArray();
-		        }else{
-		        	if(!file.exists() || file.length() == 0){
-		        		file = null;
-		        	}
-		        }
-	        
-	        }finally{
-	        	AQUtility.close(is);
-	        	AQUtility.close(os);
-	        }
-	        
-        }
-        
-        AQUtility.debug("response", code);
-        if(data != null){
-        	AQUtility.debug(data.length, url);
-        }
-        
-        status.code(code).message(message).error(error).redirect(redirect).time(new Date()).data(data).file(file).client(client).context(context).headers(response.getAllHeaders());
-        
+
+				copy(is, os, (int) entity.getContentLength());
+
+
+				os.flush();
+
+				if(file == null){
+					data = ((PredefinedBAOS) os).toByteArray();
+				}else{
+					if(!file.exists() || file.length() == 0){
+						file = null;
+					}
+				}
+
+			}finally{
+				AQUtility.close(is);
+				AQUtility.close(os);
+			}
+
+		}
+
+		AQUtility.debug("response", code);
+		if(data != null){
+			AQUtility.debug(data.length, url);
+		}
+
+		status.code(code).message(message).error(error).redirect(redirect).time(new Date()).data(data).file(file).client(client).context(context).headers(response.getAllHeaders());
+
 	}
 	
 	

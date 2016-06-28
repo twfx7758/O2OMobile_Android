@@ -38,7 +38,7 @@ import com.BeeFramework.model.BeeCallback;
 import com.external.androidquery.callback.AjaxStatus;
 import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
-import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.servicetypelistRequest;
 import com.insthub.O2OMobile.Protocol.servicetypelistResponse;
 import com.insthub.O2OMobile.SESSION;
@@ -53,8 +53,8 @@ import java.util.Map;
 public class HomeModel extends BaseModel {
     private int NUMPERPAGE = 20;
     public int publicMore;
-    public ArrayList<SERVICE_TYPE> publicServiceTypeList = new ArrayList<SERVICE_TYPE>();
-    public ArrayList<SERVICE_TYPE> publicServiceTypeLisSort = new ArrayList<SERVICE_TYPE>();
+    public ArrayList<BUSINESS_TYPE> publicServiceTypeList = new ArrayList<BUSINESS_TYPE>();
+    public ArrayList<BUSINESS_TYPE> publicServiceTypeLisSort = new ArrayList<BUSINESS_TYPE>();
 
 
     public HomeModel(Context context) {
@@ -65,7 +65,7 @@ public class HomeModel extends BaseModel {
         servicetypelistRequest request = new servicetypelistRequest();
         request.by_no = 1;
         request.count = NUMPERPAGE;
-        request.sid = SESSION.getInstance().sid;
+        request.sid = 0; //SESSION.getInstance().sid;
         request.uid = SESSION.getInstance().uid;
         request.ver = O2OMobileAppConst.VERSION_CODE;
         BeeCallback<JSONObject> cb = new BeeCallback<JSONObject>() {
@@ -118,7 +118,7 @@ public class HomeModel extends BaseModel {
 
     public void sortList() {
         int a = publicServiceTypeList.size() % 2;
-        SERVICE_TYPE empty = new SERVICE_TYPE();
+        BUSINESS_TYPE empty = new BUSINESS_TYPE();
         if (a == 1) {
             publicServiceTypeLisSort.add(empty);
         }
@@ -128,7 +128,7 @@ public class HomeModel extends BaseModel {
         servicetypelistRequest request = new servicetypelistRequest();
         request.by_no = (int)Math.ceil(publicServiceTypeList.size()*1.0/NUMPERPAGE) +1;;
         request.count = NUMPERPAGE;
-        request.sid = SESSION.getInstance().sid;
+        request.sid = 0; //SESSION.getInstance().sid;
         request.uid = SESSION.getInstance().uid;
         request.ver = O2OMobileAppConst.VERSION_CODE;
         BeeCallback<JSONObject> cb = new BeeCallback<JSONObject>() {
@@ -178,7 +178,7 @@ public class HomeModel extends BaseModel {
         servicetypelistRequest request = new servicetypelistRequest();
         request.by_no = 1;
         request.count = NUMPERPAGE;
-        request.sid = SESSION.getInstance().sid;
+        request.sid = 0; //SESSION.getInstance().sid;
         request.uid = SESSION.getInstance().uid;
         request.ver = O2OMobileAppConst.VERSION_CODE;
         BeeCallback<JSONObject> cb = new BeeCallback<JSONObject>() {

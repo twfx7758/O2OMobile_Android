@@ -64,16 +64,16 @@ public class SlidingActivity extends FragmentActivity {
 
 	private void init() {
 		mSlidingMenu = (SlidingMenu) findViewById(R.id.slidingMenu);
-		mSlidingMenu.setLeftView(getLayoutInflater().inflate(R.layout.left_frame, null));
-		mSlidingMenu.setRightView(getLayoutInflater().inflate(R.layout.right_frame, null));
+		//mSlidingMenu.setLeftView(getLayoutInflater().inflate(R.layout.left_frame, null));
+		//mSlidingMenu.setRightView(getLayoutInflater().inflate(R.layout.right_frame, null));
 		mSlidingMenu.setCenterView(getLayoutInflater().inflate(R.layout.center_frame, null));
 
 		FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-		mA2MenuFragment = new A2_MenuFragment();
-		t.replace(R.id.left_frame, mA2MenuFragment);
+		//mA2MenuFragment = new A2_MenuFragment();
+		//t.replace(R.id.left_frame, mA2MenuFragment);
 
-		mRightFragment = new RightFragment();
-		t.replace(R.id.right_frame, mRightFragment);
+		//mRightFragment = new RightFragment();
+		//t.replace(R.id.right_frame, mRightFragment);
 
 		mA0HomeFragment = new A0_HomeFragment();
 		t.replace(R.id.center_frame, mA0HomeFragment);

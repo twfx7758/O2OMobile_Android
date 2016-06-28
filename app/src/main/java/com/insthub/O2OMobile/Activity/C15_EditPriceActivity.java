@@ -83,7 +83,7 @@ public class C15_EditPriceActivity extends BaseActivity implements BusinessRespo
         mPrice = (EditText) findViewById(R.id.price);
         mSave = (Button) findViewById(R.id.save);
         if(mMyService !=null){
-            mType.setText(mMyService.service_type.title);
+            mType.setText(mMyService.service_type.BusinessDes);
             mPrice.setText(mMyService.price);
             mPrice.setSelection(mMyService.price.length());
         }

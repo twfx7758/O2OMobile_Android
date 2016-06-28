@@ -16,7 +16,7 @@ public class servicetypelistRequest  extends DataBaseModel
      public int uid;
 
      @Column(name = "sid")
-     public String   sid;
+     public int   sid;
 
      @Column(name = "by_id")
      public int by_id;
@@ -40,7 +40,7 @@ public class servicetypelistRequest  extends DataBaseModel
 
           this.uid = jsonObject.optInt("uid");
 
-          this.sid = jsonObject.optString("sid");
+          this.sid = jsonObject.optInt("sid");
 
           this.by_id = jsonObject.optInt("by_id");
 

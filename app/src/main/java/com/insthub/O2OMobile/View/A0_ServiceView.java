@@ -45,6 +45,7 @@ import com.insthub.O2OMobile.Adapter.A0_ServiceAdapter;
 import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.Model.HomeModel;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.Protocol.servicetypelistResponse;
 import com.insthub.O2OMobile.R;
@@ -63,7 +64,7 @@ public class A0_ServiceView extends FrameLayout implements BusinessResponse, IXL
     private ImageView mE0EmptyView;
     private TextView mEmptyView;
     private SharedPreferences mShared;
-    private ArrayList<SERVICE_TYPE> mServiceTypes;
+    private ArrayList<BUSINESS_TYPE> mServiceTypes;
     private String mHomeData;
 
     public A0_ServiceView(Context context) {
@@ -182,7 +183,7 @@ public class A0_ServiceView extends FrameLayout implements BusinessResponse, IXL
 
     private void sortList() {
         int a = mServiceTypes.size() % 2;
-        SERVICE_TYPE empty = new SERVICE_TYPE();
+        BUSINESS_TYPE empty = new BUSINESS_TYPE();
         if (a == 1) {
             mServiceTypes.add(empty);
         }

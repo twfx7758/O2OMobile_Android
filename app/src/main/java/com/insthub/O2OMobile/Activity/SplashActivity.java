@@ -88,6 +88,11 @@ public class SplashActivity extends Activity {
     }
 
     private void redirectto() {
+        Intent intent = new Intent(this, SlidingActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+        finish();
+        /*
         boolean isFirstRunLead = mShared.getBoolean("isFirstRunLead", true);
         if (isFirstRunLead) {
             Intent intent = new Intent(this, LeadActivity.class);
@@ -114,6 +119,6 @@ public class SplashActivity extends Activity {
                 finish();
             }
         }
-
+        */
     }
 }

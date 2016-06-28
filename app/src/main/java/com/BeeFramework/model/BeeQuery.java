@@ -57,11 +57,11 @@ public class BeeQuery<T> extends AQuery {
 	{
 		if (ENVIROMENT_PRODUCTION == BeeQuery.environment())
 		{
-			return "http://demo.o2omobile.cn/api";
+			return "http://twfx7758.oicp.net:8000/api";
 		}
 		else 
 		{
-            return "http://dev.o2omobile.cn/api";
+            return "http://twfx7758.oicp.net:8000/api";
 
 		}
 	}
@@ -69,11 +69,11 @@ public class BeeQuery<T> extends AQuery {
     {
         if (ENVIROMENT_PRODUCTION == BeeQuery.environment())
         {
-        	return "http://demo.o2omobile.cn";
+        	return "http://twfx7758.oicp.net:8000";
         }
         else
         {
-        	return "http://dev.o2omobile.cn";
+        	return "http://twfx7758.oicp.net:8000/api";
         }
     }
 

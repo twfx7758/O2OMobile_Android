@@ -48,7 +48,7 @@ import java.util.Map;
 public class ServiceModel extends BaseModel {
     private Context mContext;
     public Boolean publicIsSecondCategory=false;
-    public ArrayList<SERVICE_TYPE> publicServiceTypeList = new ArrayList<SERVICE_TYPE>();
+    public ArrayList<BUSINESS_TYPE> publicServiceTypeList = new ArrayList<BUSINESS_TYPE>();
     public ArrayList<SERVICE_CATEGORY> publicServiceCategories=new ArrayList<SERVICE_CATEGORY>();
     public ArrayList<SERVICE_CATEGORY> publicSecondCategories=new ArrayList<SERVICE_CATEGORY>();
     public ServiceModel(Context context) {
@@ -177,7 +177,7 @@ public class ServiceModel extends BaseModel {
     }
     public void getTypeList() {
         servicetypelistRequest request = new servicetypelistRequest();
-        request.sid = SESSION.getInstance().sid;
+        request.sid = 0; //SESSION.getInstance().sid;
         request.uid = SESSION.getInstance().uid;
         request.ver = O2OMobileAppConst.VERSION_CODE;
         request.by_id=0;

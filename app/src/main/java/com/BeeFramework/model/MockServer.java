@@ -162,10 +162,10 @@ public class MockServer
             response.more = 0;
 
             for (int i = 1; i < 8; i++) {
-                SERVICE_TYPE service_type = new SERVICE_TYPE();
-                service_type.id = i;
-                service_type.title = "大保健"+i;
-                service_type.large_icon="http://wuzheng.qiniudn.com/B0-icon-"+i+".png";
+                BUSINESS_TYPE service_type = new BUSINESS_TYPE();
+                service_type.BusinessID = i;
+                service_type.BusinessDes = "大保健"+i;
+                service_type.LargeIcon="http://wuzheng.qiniudn.com/B0-icon-"+i+".png";
                 response.services.add(service_type);
             }
 
@@ -484,10 +484,10 @@ public class MockServer
             for(int i = 0; i < 10; i++) {
                 MY_SERVICE my_service = new MY_SERVICE();
                 my_service.id=i;
-                SERVICE_TYPE service_type=new SERVICE_TYPE();
-                service_type.title="跑腿服务";
+                BUSINESS_TYPE service_type=new BUSINESS_TYPE();
+                service_type.BusinessDes="跑腿服务";
                 my_service.price="50";
-                service_type.icon="http://wuzheng.qiniudn.com/B0-icon-1.png";
+                service_type.Icon="http://wuzheng.qiniudn.com/B0-icon-1.png";
                 my_service.service_type=service_type;
                 response.services.add(my_service);
             }

@@ -88,8 +88,8 @@ public class F0_ProfileServiceListAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
         MY_SERVICE service = mList.get(position);
-        holder.title.setText(service.service_type.title);
-        ImageLoader.getInstance().displayImage(service.service_type.icon, holder.icon, O2OMobile.options_home);
+        holder.title.setText(service.service_type.BusinessDes);
+        ImageLoader.getInstance().displayImage(service.service_type.Icon, holder.icon, O2OMobile.options_home);
         if(service.price!=null&&!"".equals(service.price)){
             holder.price.setText(Utils.formatBalance(service.price)+mContext.getString(R.string.yuan_start));
         }

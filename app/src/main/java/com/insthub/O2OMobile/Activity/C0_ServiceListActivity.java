@@ -55,6 +55,7 @@ import com.insthub.O2OMobile.Adapter.C0_ServiceListAdapter;
 import com.insthub.O2OMobile.Model.UserListModel;
 import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.ENUM_SEARCH_ORDER;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.Protocol.SIMPLE_USER;
@@ -69,7 +70,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
     C0_ServiceListAdapter mListWithServiceAdapter;
     XListView                       mListView;
     UserListModel                   mDataModel;
-    SERVICE_TYPE                    mServiceType;
+    BUSINESS_TYPE                    mServiceType;
     ImageView                       mFilterButton;
     LinearLayout                    mFilterLayout;
 
@@ -133,12 +134,12 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
 
         mDataModel = new UserListModel(this);
         mDataModel.addResponseListener(this);
-        mServiceType = (SERVICE_TYPE) getIntent().getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
-        if (null != mServiceType.title)
+        mServiceType = (BUSINESS_TYPE) getIntent().getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
+        if (null != mServiceType.BusinessDes)
         {
-            mTitleTextView.setText(mServiceType.title);
+            mTitleTextView.setText(mServiceType.BusinessDes);
         }
-        mDataModel.fetPreService(mServiceType.id, ENUM_SEARCH_ORDER.location_asc);
+        mDataModel.fetPreService(mServiceType.BusinessID, ENUM_SEARCH_ORDER.location_asc);
         mFilterLayout = (LinearLayout)findViewById(R.id.c0_filter_layout);
         mFilterButton = (ImageView)findViewById(R.id.top_view_right_image);
         mFilterButton.setImageResource(R.drawable.b1_icon_filter);
@@ -283,7 +284,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                 search_order = ENUM_SEARCH_ORDER.price_desc;
                 selectedSearchOrder(search_order);
                 hideFilter();
-                mDataModel.fetPreService(mServiceType.id, search_order);
+                mDataModel.fetPreService(mServiceType.BusinessID, search_order);
             }
         });
 
@@ -296,7 +297,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                 search_order = ENUM_SEARCH_ORDER.price_asc;
                 selectedSearchOrder(search_order);
                 hideFilter();
-                mDataModel.fetPreService(mServiceType.id, search_order);
+                mDataModel.fetPreService(mServiceType.BusinessID, search_order);
             }
         });
 
@@ -309,7 +310,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                 search_order = ENUM_SEARCH_ORDER.rank_desc;
                 selectedSearchOrder(search_order);
                 hideFilter();
-                mDataModel.fetPreService(mServiceType.id, search_order);
+                mDataModel.fetPreService(mServiceType.BusinessID, search_order);
             }
         });
 
@@ -322,7 +323,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                 search_order = ENUM_SEARCH_ORDER.location_asc;
                 selectedSearchOrder(search_order);
                 hideFilter();
-                mDataModel.fetPreService(mServiceType.id, search_order);
+                mDataModel.fetPreService(mServiceType.BusinessID, search_order);
             }
         });
 
@@ -385,11 +386,11 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
 
     @Override
     public void onRefresh(int id) {
-        mDataModel.fetPreService(mServiceType.id, search_order);
+        mDataModel.fetPreService(mServiceType.BusinessID, search_order);
     }
 
     @Override
     public void onLoadMore(int id) {
-        mDataModel.fetNextService(mServiceType.id, search_order);
+        mDataModel.fetNextService(mServiceType.BusinessID, search_order);
     }
 }

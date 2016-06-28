@@ -79,24 +79,24 @@ public class A0_HomeFragment extends Fragment {
         locationManager.refreshLocation();
 		
 		view = inflater.inflate(R.layout.a0_home, null);
-		mMenu = (ImageView) view.findViewById(R.id.home_menu);
+		//mMenu = (ImageView) view.findViewById(R.id.home_menu);
 		mTitle = (TextView) view.findViewById(R.id.home_title);
 		mImagePager = (ViewPager) view.findViewById(R.id.home_pager);
 		mIndicator = (CirclePageIndicator) view.findViewById(R.id.home_indicator);
-		mSearch = (ImageView) view.findViewById(R.id.home_search);
-		mFilter = (ImageView) view.findViewById(R.id.home_filter);
+		//mSearch = (ImageView) view.findViewById(R.id.home_search);
+		//mFilter = (ImageView) view.findViewById(R.id.home_filter);
 		
 		LayoutInflater mInflater = LayoutInflater.from(getActivity());
 		mA0ServiceView = (A0_ServiceView) mInflater.inflate(R.layout.a0_service, null);
 		mViewList.add(mA0ServiceView);
-		mHomeDemand = (A0_RequestListView) mInflater.inflate(R.layout.a0_request_list, null);
-		mViewList.add(mHomeDemand);
+		//mHomeDemand = (A0_RequestListView) mInflater.inflate(R.layout.a0_request_list, null);
+		//mViewList.add(mHomeDemand);
 		
 		mImagePager.setAdapter(new Bee_PageAdapter(mViewList));
 		mImagePager.setCurrentItem(0);
 		mIndicator.setViewPager(mImagePager, 0);
 		mIndicator.requestLayout();
-		
+		/*
 		mImagePager.setOnPageChangeListener(new OnPageChangeListener() {
 
             @Override
@@ -126,7 +126,7 @@ public class A0_HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-		
+		*/
 		if (!EventBus.getDefault().isregister(this)) {
             EventBus.getDefault().register(this);
         }
@@ -142,7 +142,8 @@ public class A0_HomeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-		
+
+		/*
 		mMenu.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -162,7 +163,7 @@ public class A0_HomeFragment extends Fragment {
                 getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
             }
         });
-		
+
 		mFilter.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -171,14 +172,15 @@ public class A0_HomeFragment extends Fragment {
                 mHomeDemand.showView();
             }
         });
+        */
 	}
 	
 	public void onEvent(Object event) {
 		Message message = (Message) event;
 		if (message.what == MessageConstant.SHOW_SEARCH_VIEW) {
-			mFilter.setImageResource(R.drawable.b2_close);
+			//mFilter.setImageResource(R.drawable.b2_close);
 		} else if (message.what == MessageConstant.HIDE_SEARCH_VIEW) {
-			mFilter.setImageResource(R.drawable.b1_icon_filter);
+			//mFilter.setImageResource(R.drawable.b1_icon_filter);
 		} 
 	}
 

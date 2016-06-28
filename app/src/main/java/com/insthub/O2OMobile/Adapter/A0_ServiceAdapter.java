@@ -47,6 +47,7 @@ import com.BeeFramework.Utils.Utils;
 import com.insthub.O2OMobile.Activity.C0_ServiceListActivity;
 import com.insthub.O2OMobile.O2OMobile;
 import com.insthub.O2OMobile.O2OMobileAppConst;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -56,9 +57,9 @@ import java.util.ArrayList;
 public class A0_ServiceAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Context mContext;
-    public ArrayList<SERVICE_TYPE> publicList;
+    public ArrayList<BUSINESS_TYPE> publicList;
     private int mStatusBarHeight;
-    public A0_ServiceAdapter(Context context, ArrayList<SERVICE_TYPE> list) {
+    public A0_ServiceAdapter(Context context, ArrayList<BUSINESS_TYPE> list) {
         this.mContext = context;
         this.publicList = list;
         mInflater = LayoutInflater.from(context);
@@ -110,20 +111,20 @@ public class A0_ServiceAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.home_need_help_item_right.setVisibility(View.VISIBLE);
-        final SERVICE_TYPE tv_home_need_help_itenm_left = publicList.get(position*2);
-        final SERVICE_TYPE service_type_right = publicList.get(position*2+1);
-        if(service_type_right.title!=null){
-            holder.service_title_right.setText(service_type_right.title);
+        final BUSINESS_TYPE tv_home_need_help_itenm_left = publicList.get(position*2);
+        final BUSINESS_TYPE service_type_right = publicList.get(position*2+1);
+        if(service_type_right.BusinessDes!=null){
+            holder.service_title_right.setText(service_type_right.BusinessDes);
         }
-        if(tv_home_need_help_itenm_left.title!=null){
-            holder.service_title_left.setText(tv_home_need_help_itenm_left.title);
+        if(tv_home_need_help_itenm_left.BusinessDes!=null){
+            holder.service_title_left.setText(tv_home_need_help_itenm_left.BusinessDes);
         }
-        ImageLoader.getInstance().displayImage(tv_home_need_help_itenm_left.large_icon, holder.home_need_help_item_left, O2OMobile.options_home);
+        ImageLoader.getInstance().displayImage(tv_home_need_help_itenm_left.LargeIcon, holder.home_need_help_item_left, O2OMobile.options_home);
 
-        if(service_type_right.icon == null) {
+        if(service_type_right.Icon == null) {
             holder.home_need_help_item_right.setVisibility(View.INVISIBLE);
         } else {
-            ImageLoader.getInstance().displayImage(service_type_right.large_icon, holder.home_need_help_item_right, O2OMobile.options_home);
+            ImageLoader.getInstance().displayImage(service_type_right.LargeIcon, holder.home_need_help_item_right, O2OMobile.options_home);
         }
 
         holder.home_need_help_item_left.setOnClickListener(new View.OnClickListener() {

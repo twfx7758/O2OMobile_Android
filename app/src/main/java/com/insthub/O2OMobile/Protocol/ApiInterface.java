@@ -44,7 +44,7 @@ public class ApiInterface
      public static final String USER_LIST  ="/user/list";
      public static final String ORDER_PAY  ="/order/pay";
      public static final String COMMENT_SEND  ="/comment/send";
-     public static final String SERVICETYPE_LIST  ="/servicetype/list";
+     public static final String SERVICETYPE_LIST  ="/shop/business";
      public static final String USER_CHANGE_AVATAR  ="/user/change-avatar";
      public static final String USER_SIGNUP  ="/user/signup";
      public static final String USER_SIGNIN  ="/user/signin";

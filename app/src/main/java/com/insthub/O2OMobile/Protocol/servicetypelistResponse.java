@@ -48,7 +48,7 @@ public class servicetypelistResponse  extends DataBaseModel
      @Column(name = "total")
      public int total;
 
-     public ArrayList<SERVICE_TYPE>   services = new ArrayList<SERVICE_TYPE>();
+     public ArrayList<BUSINESS_TYPE>   services = new ArrayList<BUSINESS_TYPE>();
 
      @Column(name = "more")
      public int more;
@@ -81,7 +81,7 @@ public class servicetypelistResponse  extends DataBaseModel
               for(int i = 0;i < subItemArray.length();i++)
                {
                   JSONObject subItemObject = subItemArray.getJSONObject(i);
-                  SERVICE_TYPE subItem = new SERVICE_TYPE();
+                   BUSINESS_TYPE subItem = new BUSINESS_TYPE();
                   subItem.fromJson(subItemObject);
                   this.services.add(subItem);
                }
@@ -108,7 +108,7 @@ public class servicetypelistResponse  extends DataBaseModel
 
           for(int i =0; i< services.size(); i++)
           {
-              SERVICE_TYPE itemData =services.get(i);
+              BUSINESS_TYPE itemData =services.get(i);
               JSONObject itemJSONObject = itemData.toJson();
               itemJSONArray.put(itemJSONObject);
           }

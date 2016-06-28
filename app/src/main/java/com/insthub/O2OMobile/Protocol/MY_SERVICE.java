@@ -50,7 +50,7 @@ public class MY_SERVICE  extends DataBaseModel
      public String   price;
 
      @Column(name = "service_type")
-     public SERVICE_TYPE   service_type;
+     public BUSINESS_TYPE   service_type;
 
      public void  fromJson(JSONObject jsonObject)  throws JSONException
      {
@@ -63,7 +63,7 @@ public class MY_SERVICE  extends DataBaseModel
           this.id = jsonObject.optInt("id");
 
           this.price = jsonObject.optString("price");
-          SERVICE_TYPE  service_type = new SERVICE_TYPE();
+          BUSINESS_TYPE  service_type = new BUSINESS_TYPE();
           service_type.fromJson(jsonObject.optJSONObject("service_type"));
           this.service_type = service_type;
           return ;

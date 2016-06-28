@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">O2OMobile</string>
+    <string name="app_name">商顾问</string>
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
@@ -203,7 +203,7 @@
     <string name="profile_brief_detail">个人简介详情</string>
     <string name="look_up_or_not">，是否查看?</string>
     <string name="no_content">无内容</string>
-    <string name="need_help">需要帮助</string>
+    <string name="need_help">商铺类型</string>
     <string name="request_around">周边需求</string>
     <string name="balance">余额：</string>
     <string name="share_title">O2OMobile</string>

@@ -55,6 +55,7 @@ import com.insthub.O2OMobile.Adapter.SecondCategoryPopAdapter;
 import com.insthub.O2OMobile.Adapter.ServiceTypePopAdapter;
 import com.insthub.O2OMobile.Model.ServiceModel;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.SERVICE_CATEGORY;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.R;
@@ -71,7 +72,7 @@ public class C17_ApplyFormActivity extends BaseActivity implements BusinessRespo
     private ServiceModel mServiceModel;
     private LinearLayout mServiceType;
     private TextView mServiceTypeTitle;
-    private ArrayList<SERVICE_TYPE> mServiceTypeList;
+    private ArrayList<BUSINESS_TYPE> mServiceTypeList;
     private PopupWindow mServiceListPopwindow;
     private View mServicePopwindowView;
     private ListView mServicePopwindowListView;
@@ -139,11 +140,11 @@ public class C17_ApplyFormActivity extends BaseActivity implements BusinessRespo
             finish();
         } else if (url.endsWith(ApiInterface.SERVICETYPE_LIST)) {
             mServiceTypeList = mServiceModel.publicServiceTypeList;
-            mServiceTypeTitle.setText(mServiceTypeList.get(0).title);
+            mServiceTypeTitle.setText(mServiceTypeList.get(0).BusinessDes);
             mSecondCategoryTitle.setText("");
             mServiceModel.publicIsSecondCategory=false;
-            mServiceTypeId = mServiceTypeList.get(0).id;
-            mServiceModel.getCategoryList(mServiceTypeList.get(0).id);
+            mServiceTypeId = mServiceTypeList.get(0).BusinessID;
+            mServiceModel.getCategoryList(mServiceTypeList.get(0).BusinessID);
         }else if (url.endsWith(ApiInterface.SERVICECATEGORY_LIST)) {
             if(mServiceModel.publicIsSecondCategory){
                 mSecondCategoryList = mServiceModel.publicSecondCategories;
@@ -240,9 +241,9 @@ public class C17_ApplyFormActivity extends BaseActivity implements BusinessRespo
                 mServicePopwindowListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        SERVICE_TYPE serviceType = mServiceTypeList.get(position);
-                        mServiceTypeId = serviceType.id;
-                        mServiceTypeTitle.setText(serviceType.title);
+                        BUSINESS_TYPE serviceType = mServiceTypeList.get(position);
+                        mServiceTypeId = serviceType.BusinessID;
+                        mServiceTypeTitle.setText(serviceType.BusinessDes);
                         mServiceModel.publicIsSecondCategory = false;
                         mServiceModel.getCategoryList(mServiceTypeId);
                         mServiceListPopwindow.dismiss();

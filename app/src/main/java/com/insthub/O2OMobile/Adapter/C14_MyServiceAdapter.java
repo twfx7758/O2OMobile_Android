@@ -90,11 +90,11 @@ public class C14_MyServiceAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         MY_SERVICE my_service = publicList.get(position);
-        if(my_service.service_type!=null&&my_service.service_type.icon!=null) {
-            mImageLoader.displayImage(my_service.service_type.icon, holder.icon, O2OMobile.options);
+        if(my_service.service_type!=null&&my_service.service_type.Icon!=null) {
+            mImageLoader.displayImage(my_service.service_type.Icon, holder.icon, O2OMobile.options);
         }
-        if(my_service.service_type != null && my_service.service_type.title != null) {
-            holder.name.setText(my_service.service_type.title);
+        if(my_service.service_type != null && my_service.service_type.BusinessDes != null) {
+            holder.name.setText(my_service.service_type.BusinessDes);
         }
         if(my_service.price!= null&&!"".equals(my_service.price)) {
             holder.price.setText(Utils.formatBalance(my_service.price));

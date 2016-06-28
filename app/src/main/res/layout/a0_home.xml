@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="#fcfcfc" >
-
+        <!--
         <ImageView
             android:id="@+id/home_menu"
             android:layout_width="52dp"
@@ -17,7 +17,7 @@
             android:background="@drawable/img_select"
             android:padding="15dp"
             android:src="@drawable/b0_btn_menu" />
-
+        -->
         <TextView
             android:id="@+id/home_title"
             android:layout_width="wrap_content"
@@ -27,27 +27,27 @@
             android:textColor="#39BCED"
             android:textSize="20dp"
             android:layout_marginTop="-3dp" />
-        
-        <ImageView 
-            android:id="@+id/home_search"
-            android:layout_width="52dp"
-            android:layout_height="48dp"
-            android:background="@drawable/img_select"
-            android:padding="12dp"
-            android:src="@drawable/b0_btn_search"
-            android:layout_gravity="right"
-            android:visibility="visible"/>
-        
-        <ImageView 
-            android:id="@+id/home_filter"
-            android:layout_width="52dp"
-            android:layout_height="48dp"
-            android:background="@drawable/img_select"
-            android:padding="12dp"
-            android:src="@drawable/b1_icon_filter"
-            android:layout_gravity="right"
-            android:visibility="gone"/>
+        <!--
+       <ImageView
+           android:id="@+id/home_search"
+           android:layout_width="52dp"
+           android:layout_height="48dp"
+           android:background="@drawable/img_select"
+           android:padding="12dp"
+           android:src="@drawable/b0_btn_search"
+           android:layout_gravity="right"
+           android:visibility="visible"/>
 
+       <ImageView
+           android:id="@+id/home_filter"
+           android:layout_width="52dp"
+           android:layout_height="48dp"
+           android:background="@drawable/img_select"
+           android:padding="12dp"
+           android:src="@drawable/b1_icon_filter"
+           android:layout_gravity="right"
+           android:visibility="gone"/>
+        -->
         <com.external.viewpagerindicator.CirclePageIndicator
             android:id="@+id/home_indicator"
             android:layout_width="wrap_content"
