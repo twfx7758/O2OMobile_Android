@@ -41,7 +41,7 @@ public class ApiInterface
      public static final String MESSAGE_LIST  ="/message/list";
      public static final String WITHDRAW_MONEY  ="/withdraw/money";
      public static final String ORDERLIST_PUBLISHED  ="/orderlist/published";
-     public static final String USER_LIST  ="/user/list";
+     public static final String USER_LIST  ="/shop/datalist";
      public static final String ORDER_PAY  ="/order/pay";
      public static final String COMMENT_SEND  ="/comment/send";
      public static final String SERVICETYPE_LIST  ="/shop/business";
@@ -74,5 +74,6 @@ public class ApiInterface
      public static final String ORDER_CANCEL  ="/order/cancel";
      public static final String ORDER_WORK_DONE  ="/order/work-done";
      public static final String ORDER_ACCEPT  ="/order/accept";
+     public static final String SHOPINFO_LIST = "/shop/datalist";
 
 }

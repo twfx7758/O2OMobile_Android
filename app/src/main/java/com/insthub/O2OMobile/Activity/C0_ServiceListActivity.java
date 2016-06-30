@@ -52,6 +52,7 @@ import com.external.androidquery.callback.AjaxStatus;
 import com.external.maxwin.view.IXListViewListener;
 import com.external.maxwin.view.XListView;
 import com.insthub.O2OMobile.Adapter.C0_ServiceListAdapter;
+import com.insthub.O2OMobile.Model.ShopInfoModel;
 import com.insthub.O2OMobile.Model.UserListModel;
 import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
@@ -59,6 +60,9 @@ import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.ENUM_SEARCH_ORDER;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.Protocol.SIMPLE_USER;
+import com.insthub.O2OMobile.Protocol.ShopInfo;
+import com.insthub.O2OMobile.Protocol.ShopInfoRequest;
+import com.insthub.O2OMobile.Protocol.ShopInfoResponse;
 import com.insthub.O2OMobile.Protocol.userlistResponse;
 import com.insthub.O2OMobile.R;
 import com.insthub.O2OMobile.Utils.LocationManager;
@@ -69,7 +73,7 @@ import org.json.JSONObject;
 public class C0_ServiceListActivity extends BaseActivity implements BusinessResponse, IXListViewListener {
     C0_ServiceListAdapter mListWithServiceAdapter;
     XListView                       mListView;
-    UserListModel                   mDataModel;
+    ShopInfoModel                   mDataModel;
     BUSINESS_TYPE                    mServiceType;
     ImageView                       mFilterButton;
     LinearLayout                    mFilterLayout;
@@ -104,9 +108,9 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position - 1 >= 0 && position - 1 < mDataModel.dataList.size()) {
-                    SIMPLE_USER user = mDataModel.dataList.get(position - 1);
+                    ShopInfo user = mDataModel.dataList.get(position - 1);
                     Intent intent_profile = new Intent(C0_ServiceListActivity.this, F0_ProfileActivity.class);
-                    intent_profile.putExtra(F0_ProfileActivity.USER_ID, user.id);
+                    intent_profile.putExtra(F0_ProfileActivity.USER_ID, user.ShopID);
                     intent_profile.putExtra(O2OMobileAppConst.SERVICE_TYPE, mServiceType);
                     startActivity(intent_profile);
                     C0_ServiceListActivity.this.overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
@@ -132,7 +136,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
             }
         });
 
-        mDataModel = new UserListModel(this);
+        mDataModel = new ShopInfoModel(this);
         mDataModel.addResponseListener(this);
         mServiceType = (BUSINESS_TYPE) getIntent().getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
         if (null != mServiceType.BusinessDes)
@@ -339,7 +343,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
         {
             if (null != jo)
             {
-                userlistResponse response = new userlistResponse();
+                ShopInfoResponse response = new ShopInfoResponse();
                 response.fromJson(jo);
 
                 if (null == mListWithServiceAdapter)

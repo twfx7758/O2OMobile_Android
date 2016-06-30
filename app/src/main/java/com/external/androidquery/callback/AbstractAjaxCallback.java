@@ -43,6 +43,7 @@ import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.scheme.SocketFactory;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
@@ -1382,7 +1383,7 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 		req.getParams().setBooleanParameter(CoreProtocolPNames.USE_EXPECT_CONTINUE, false);
 		
 		HttpEntity entity = null;
-		
+		StringEntity stringEntity = null;
 		Object value = params.get(AQuery.POST_ENTITY);
 		
 		if(value instanceof HttpEntity){			
@@ -1399,15 +1400,16 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 			}
 			
 			entity = new UrlEncodedFormEntity(pairs, "UTF-8");
-			
+			stringEntity = new StringEntity(value.toString());
 		}
 		
 		
 		if(headers != null  && !headers.containsKey("Content-Type")){
 			headers.put("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
 		}
-		
-		req.setEntity(entity);
+
+		//req.setEntity(entity);
+		req.setEntity(stringEntity);
 		httpDo(req, url, headers, status);
 		
 		
@@ -1501,6 +1503,8 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 			}
 
 		}
+
+		hr.addHeader("Content-Type", "application/json");
 
 		if(GZIP && (headers == null || !headers.containsKey("Accept-Encoding"))){
 			hr.addHeader("Accept-Encoding", "gzip");
