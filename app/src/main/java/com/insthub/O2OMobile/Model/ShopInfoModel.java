@@ -9,12 +9,9 @@ import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
 import com.insthub.O2OMobile.Protocol.ENUM_SEARCH_ORDER;
 import com.insthub.O2OMobile.Protocol.LOCATION;
-import com.insthub.O2OMobile.Protocol.SIMPLE_USER;
 import com.insthub.O2OMobile.Protocol.ShopInfo;
 import com.insthub.O2OMobile.Protocol.ShopInfoRequest;
 import com.insthub.O2OMobile.Protocol.ShopInfoResponse;
-import com.insthub.O2OMobile.Protocol.userlistRequest;
-import com.insthub.O2OMobile.Protocol.userlistResponse;
 import com.insthub.O2OMobile.SESSION;
 import com.insthub.O2OMobile.Utils.LocationManager;
 
