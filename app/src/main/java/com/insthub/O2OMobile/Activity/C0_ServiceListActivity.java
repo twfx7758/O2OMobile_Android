@@ -52,6 +52,7 @@ import com.external.androidquery.callback.AjaxStatus;
 import com.external.maxwin.view.IXListViewListener;
 import com.external.maxwin.view.XListView;
 import com.insthub.O2OMobile.Adapter.C0_ServiceListAdapter;
+import com.insthub.O2OMobile.Adapter.C0_ShopInfoAdapter;
 import com.insthub.O2OMobile.Model.ShopInfoModel;
 import com.insthub.O2OMobile.Model.UserListModel;
 import com.insthub.O2OMobile.O2OMobileAppConst;
@@ -71,7 +72,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class C0_ServiceListActivity extends BaseActivity implements BusinessResponse, IXListViewListener {
-    C0_ServiceListAdapter mListWithServiceAdapter;
+    C0_ShopInfoAdapter mListWithServiceAdapter;
     XListView                       mListView;
     ShopInfoModel                   mDataModel;
     BUSINESS_TYPE                    mServiceType;
@@ -339,7 +340,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
     {
     	mListView.stopRefresh();
     	mListView.stopLoadMore();
-        if(url.endsWith(ApiInterface.USER_LIST))
+        if(url.endsWith(ApiInterface.SHOPINFO_LIST))
         {
             if (null != jo)
             {
@@ -348,7 +349,7 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
 
                 if (null == mListWithServiceAdapter)
                 {
-                    mListWithServiceAdapter = new C0_ServiceListAdapter(this, mDataModel.dataList);
+                    mListWithServiceAdapter = new C0_ShopInfoAdapter(this, mDataModel.dataList);
                     mListView.setAdapter(mListWithServiceAdapter);
                     footView = new View(this);
                     footView.setEnabled(true);
