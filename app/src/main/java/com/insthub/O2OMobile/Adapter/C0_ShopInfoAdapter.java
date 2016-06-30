@@ -42,6 +42,7 @@ public class C0_ShopInfoAdapter extends BeeBaseAdapter{
 
     @Override
     public View createCellView() {
+
         return mInflater.inflate(R.layout.c0_shopinfo_cell, null);
     }
 
