@@ -937,7 +937,7 @@ public class D1_OrderActivity extends BaseActivity implements BusinessResponse, 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent(D1_OrderActivity.this, F0_ProfileActivity.class);
-                intent.putExtra(F0_ProfileActivity.USER_ID, order.employer.id);
+                intent.putExtra(F0_ProfileActivity.SHOP_ID, order.employer.id);
                 startActivity(intent);
             }
         });
@@ -1020,7 +1020,7 @@ public class D1_OrderActivity extends BaseActivity implements BusinessResponse, 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent(D1_OrderActivity.this, F0_ProfileActivity.class);
-                intent.putExtra(F0_ProfileActivity.USER_ID, employee.id);
+                intent.putExtra(F0_ProfileActivity.SHOP_ID, employee.id);
                 startActivity(intent);
             }
         });

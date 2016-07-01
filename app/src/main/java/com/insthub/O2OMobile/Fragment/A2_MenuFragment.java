@@ -246,7 +246,7 @@ public class A2_MenuFragment extends Fragment implements OnClickListener, Busine
 			break;
         case R.id.left_avatar:
             Intent intent_profile=new Intent(getActivity(), F0_ProfileActivity.class);
-            intent_profile.putExtra(F0_ProfileActivity.USER_ID, mUser.id);
+            intent_profile.putExtra(F0_ProfileActivity.SHOP_ID, mUser.id);
             startActivity(intent_profile);
             getActivity().overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
             break;

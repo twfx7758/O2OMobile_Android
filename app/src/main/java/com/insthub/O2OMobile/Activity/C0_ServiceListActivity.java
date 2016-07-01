@@ -109,9 +109,9 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position - 1 >= 0 && position - 1 < mDataModel.dataList.size()) {
-                    ShopInfo user = mDataModel.dataList.get(position - 1);
+                    ShopInfo shopInfo = mDataModel.dataList.get(position - 1);
                     Intent intent_profile = new Intent(C0_ServiceListActivity.this, F0_ProfileActivity.class);
-                    intent_profile.putExtra(F0_ProfileActivity.USER_ID, user.ShopID);
+                    intent_profile.putExtra(F0_ProfileActivity.SHOP_ID, shopInfo.ShopID);
                     intent_profile.putExtra(O2OMobileAppConst.SERVICE_TYPE, mServiceType);
                     startActivity(intent_profile);
                     C0_ServiceListActivity.this.overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);

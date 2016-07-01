@@ -95,7 +95,7 @@ public class F8_ReviewAdapter extends BeeBaseAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent_profile= new Intent(mContext, F0_ProfileActivity.class);
-                intent_profile.putExtra(F0_ProfileActivity.USER_ID,comment.user.id);
+                intent_profile.putExtra(F0_ProfileActivity.SHOP_ID,comment.user.id);
                 mContext.startActivity(intent_profile);
             }
         });

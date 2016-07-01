@@ -51,7 +51,10 @@ public class C0_ShopInfoAdapter extends BeeBaseAdapter{
         ShopInfo shopInfo = (ShopInfo)dataList.get(position);
         C0_ShopCellHolder holder = (C0_ShopCellHolder)h;
         holder.shoptitle.setText(shopInfo.ShopTitle);
-        holder.shopaddr.setText(shopInfo.CityName + "-" + shopInfo.AreaName);
+        String strArea = shopInfo.CityName + "-" + shopInfo.AreaName;
+        if(shopInfo.CityName == "" && shopInfo.AreaName == "")
+            strArea = "北京";
+        holder.shopaddr.setText(strArea);
 
         return null;
     }

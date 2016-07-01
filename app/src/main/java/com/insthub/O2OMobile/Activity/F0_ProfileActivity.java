@@ -61,6 +61,7 @@ import com.insthub.O2OMobile.O2OMobileAppConst;
 import com.insthub.O2OMobile.MessageConstant;
 import com.insthub.O2OMobile.Model.UserBalanceModel;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
+import com.insthub.O2OMobile.Protocol.BUSINESS_TYPE;
 import com.insthub.O2OMobile.Protocol.ENUM_USER_GROUP;
 import com.insthub.O2OMobile.Protocol.SERVICE_TYPE;
 import com.insthub.O2OMobile.Protocol.USER;
@@ -75,8 +76,8 @@ import org.json.JSONObject;
 
 
 public class F0_ProfileActivity extends BaseActivity implements BusinessResponse, View.OnClickListener {
-    public static final String USER_ID = "user_id";
-    private int mUserId;
+    public static final String SHOP_ID = "shop_id";
+    private int mShopId;
     private ImageView mBack;
     private ImageView mSetting;
     private ListView mListview;
@@ -99,7 +100,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
     private LinearLayout mBirefLayout;
     private SharedPreferences mShared;
     protected ImageLoader mImageLoader = ImageLoader.getInstance();
-    private SERVICE_TYPE mServiceType;
+    private BUSINESS_TYPE mServiceType;
     private TextView mComplain;
     private ImageView mRefresh;
 
@@ -107,8 +108,8 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.f0_profile);
-        mUserId = getIntent().getIntExtra(USER_ID, 0);
-        mServiceType = (SERVICE_TYPE) getIntent().getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
+        mShopId = (int) getIntent().getLongExtra(SHOP_ID, 0);
+        mServiceType = (BUSINESS_TYPE) getIntent().getSerializableExtra(O2OMobileAppConst.SERVICE_TYPE);
         mListview = (ListView) findViewById(R.id.profile_listview);
         mHelp = (Button) findViewById(R.id.btn_help);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
@@ -135,7 +136,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
         mListview.setAdapter(null);
         mUserBalance = new UserBalanceModel(this);
         mUserBalance.addResponseListener(this);
-        mUserBalance.getProfile(mUserId);
+        mUserBalance.getProfile(mShopId);
         mBack.setOnClickListener(this);
         mSetting.setOnClickListener(this);
         mBrief_detail.setOnClickListener(this);
@@ -144,7 +145,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
         mComplain.setOnClickListener(this);
         mAvatar.setOnClickListener(this);
         mRefresh.setOnClickListener(this);
-        if (mUserId != SESSION.getInstance().uid) {
+        if (mShopId != SESSION.getInstance().uid) {
             mSetting.setVisibility(View.GONE);
             mComplain.setVisibility(View.VISIBLE);
         } else {
@@ -155,7 +156,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
 
     @Override
     protected void onResume() {
-        if (mUserId == SESSION.getInstance().uid) {
+        if (mShopId == SESSION.getInstance().uid) {
             mUserBalance.get();
             mShared = getSharedPreferences(O2OMobileAppConst.USERINFO, 0);
             String userStr = mShared.getString("user", "");
@@ -245,7 +246,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
                     mBirefLayout.setVisibility(View.VISIBLE);
                     mBrief.setText(mUser.brief);
                 }
-                mUserBalance.getServiceList(mUserId);
+                mUserBalance.getServiceList(mShopId);
                 mHelp.setVisibility(View.VISIBLE);
             }
             if (mUser.my_certification.size() == 0) {
@@ -278,7 +279,7 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
 //Todo
             case R.id.btn_help:
                 intent = new Intent(F0_ProfileActivity.this, C1_PublishOrderActivity.class);
-                intent.putExtra(C1_PublishOrderActivity.DEFAULT_RECEIVER_ID, mUserId);
+                intent.putExtra(C1_PublishOrderActivity.DEFAULT_RECEIVER_ID, mShopId);
                 if(myServiceListJo!=null&&!"".equals(myServiceListJo)){
                     intent.putExtra("service_list", myServiceListJo.toString());
                 }
@@ -287,14 +288,14 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
                 break;
             case R.id.comment: {
                 intent = new Intent(F0_ProfileActivity.this, F8_ReviewActivity.class);
-                intent.putExtra(O2OMobileAppConst.USERID, mUserId);
+                intent.putExtra(O2OMobileAppConst.USERID, mShopId);
                 startActivity(intent);
                 break;
 
             }
             case R.id.complain: {
                 intent = new Intent(F0_ProfileActivity.this, G0_ReportActivity.class);
-                intent.putExtra("userId", mUserId);
+                intent.putExtra("userId", mShopId);
                 startActivity(intent);
                 break;
 
@@ -307,10 +308,10 @@ public class F0_ProfileActivity extends BaseActivity implements BusinessResponse
 
             }
             case R.id.refresh:{
-                if(mUserId ==SESSION.getInstance().uid){
+                if(mShopId ==SESSION.getInstance().uid){
                     mUserBalance.get();
                 }
-                mUserBalance.getProfile(mUserId);
+                mUserBalance.getProfile(mShopId);
                 break;
 
             }
