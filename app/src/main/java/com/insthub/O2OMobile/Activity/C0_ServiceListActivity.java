@@ -361,11 +361,12 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                     mListWithServiceAdapter.notifyDataSetChanged();
                 }
                 mListView.stopLoadMore();
+                /*
                 if (0 == response.more)
                 {
                     mListView.setPullLoadEnable(false);
                 }
-
+                */
                 Rect frame = new Rect();
                 getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
                 int statusBarHeight = frame.top;
