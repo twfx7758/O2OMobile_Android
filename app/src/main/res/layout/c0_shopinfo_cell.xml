@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:gravity="left">
 
     <LinearLayout
         android:id="@+id/c0_shopcell"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/img_select"
         android:gravity="center_vertical"
@@ -22,7 +22,7 @@
             android:src="@drawable/e8_profile_no_avatar" />
         <LinearLayout
             android:id="@+id/c0_shopcontent_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
@@ -30,7 +30,7 @@
             
             <LinearLayout
                 android:id="@+id/c0_shoptitle_layout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
@@ -44,7 +44,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="15dp" >
@@ -60,12 +60,17 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right">
         <ImageView
             android:id="@+id/c0_shoparrow_right"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="15dp"
             android:src="@drawable/c0_arrow_on" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
