@@ -63,7 +63,7 @@ public class ShopInfoModel extends BaseModel
                         if(response.succeed == 1)
                         {
                             dataList.clear();
-                            dataList.addAll(response.users);
+                            dataList.addAll(response.services);
                             ShopInfoModel.this.OnMessageResponse(url,jo,status);
                         }
                         else
@@ -128,7 +128,7 @@ public class ShopInfoModel extends BaseModel
 
                         if(response.succeed == 1)
                         {
-                            dataList.addAll(response.users);
+                            dataList.addAll(response.services);
                             ShopInfoModel.this.OnMessageResponse(url,jo,status);
                         }
                         else

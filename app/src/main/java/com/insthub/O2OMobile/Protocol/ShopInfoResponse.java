@@ -18,7 +18,7 @@ public class ShopInfoResponse  extends DataBaseModel
     @Column(name = "total")
     public int total;
 
-    public ArrayList<ShopInfo> users = new ArrayList<ShopInfo>();
+    public ArrayList<ShopInfo> services = new ArrayList<ShopInfo>();
 
     @Column(name = "more")
     public int more;
@@ -45,7 +45,7 @@ public class ShopInfoResponse  extends DataBaseModel
 
         this.total = jsonObject.optInt("total");
 
-        subItemArray = jsonObject.optJSONArray("users");
+        subItemArray = jsonObject.optJSONArray("services");
         if(null != subItemArray)
         {
             for(int i = 0;i < subItemArray.length();i++)
@@ -53,7 +53,7 @@ public class ShopInfoResponse  extends DataBaseModel
                 JSONObject subItemObject = subItemArray.getJSONObject(i);
                 ShopInfo subItem = new ShopInfo();
                 subItem.fromJson(subItemObject);
-                this.users.add(subItem);
+                this.services.add(subItem);
             }
         }
 
@@ -76,13 +76,13 @@ public class ShopInfoResponse  extends DataBaseModel
         JSONArray itemJSONArray = new JSONArray();
         localItemObject.put("total", total);
 
-        for(int i =0; i< users.size(); i++)
+        for(int i =0; i< services.size(); i++)
         {
-            ShopInfo itemData = users.get(i);
+            ShopInfo itemData = services.get(i);
             JSONObject itemJSONObject = itemData.toJson();
             itemJSONArray.put(itemJSONObject);
         }
-        localItemObject.put("users", itemJSONArray);
+        localItemObject.put("services", itemJSONArray);
         localItemObject.put("more", more);
         localItemObject.put("succeed", succeed);
         localItemObject.put("count", count);

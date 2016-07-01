@@ -53,7 +53,7 @@
                     android:id="@+id/c0_shopaddr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|right"
+                    android:gravity="center_vertical|left"
                     android:text="100元"
                     android:textSize="16sp"
                     android:textColor="@color/select_item" />
