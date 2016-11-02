@@ -26,6 +26,5 @@
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:textColor="#ffffff"
-            android:text="@string/request_he_help"
-            />
+            android:text="@string/request_he_help" />
 </RelativeLayout>
