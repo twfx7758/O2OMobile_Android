@@ -14,6 +14,8 @@ import org.json.JSONObject;
 
 public class ShopDetailActivity extends BaseActivity implements BusinessResponse, IXListViewListener {
 
+    public static final String SHOP_ID = "shop_id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
