@@ -75,5 +75,6 @@ public class ApiInterface
      public static final String ORDER_WORK_DONE  ="/order/work-done";
      public static final String ORDER_ACCEPT  ="/order/accept";
      public static final String SHOPINFO_LIST = "/shop/datalist";
+     public static final String SHOPINFO_DETAIL = "/shop/detail";
 
 }

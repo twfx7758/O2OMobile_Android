@@ -27,7 +27,6 @@ public class ShopDetail extends DataBaseModel{
             return;
         }
 
-        JSONArray subItemArray;
         this.ShopID = jsonObject.optInt("ShopID");
         this.ShopTitle = jsonObject.optString("ShopTitle");
         this.ShopDes = jsonObject.optString("ShopDes");
