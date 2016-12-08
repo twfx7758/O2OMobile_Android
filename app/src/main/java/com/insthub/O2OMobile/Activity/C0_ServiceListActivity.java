@@ -116,8 +116,6 @@ public class C0_ServiceListActivity extends BaseActivity implements BusinessResp
                     startActivity(intent_profile);
                     C0_ServiceListActivity.this.overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
                 }
-
-
             }
         });
         mBackButton = (ImageView)findViewById(R.id.top_view_back);
