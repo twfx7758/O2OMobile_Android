@@ -42,16 +42,13 @@ public class ShopDetailResponse extends DataBaseModel{
 
         this.total = jsonObject.optInt("total");
 
-        this.shopDetail = (ShopDetail) jsonObject.opt("ShopDetail");
-
+        ShopDetail detail = new ShopDetail();
+        detail.fromJson(jsonObject.optJSONObject("ShopDetail"));
+        this.shopDetail = detail;
         this.more = jsonObject.optInt("more");
-
         this.succeed = jsonObject.optInt("succeed");
-
         this.count = jsonObject.optInt("count");
-
         this.error_code = jsonObject.optInt("error_code");
-
         this.error_desc = jsonObject.optString("error_desc");
         return ;
     }
@@ -61,7 +58,8 @@ public class ShopDetailResponse extends DataBaseModel{
         JSONObject localItemObject = new JSONObject();
         JSONArray itemJSONArray = new JSONArray();
         localItemObject.put("total", total);
-        localItemObject.put("ShopDetail", this.shopDetail.toJson());
+        if(this.shopDetail != null)
+            localItemObject.put("ShopDetail", this.shopDetail.toJson());
         localItemObject.put("more", more);
         localItemObject.put("succeed", succeed);
         localItemObject.put("count", count);
