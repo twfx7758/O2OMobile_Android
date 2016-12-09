@@ -57,7 +57,7 @@ public class ShopDetailActivity extends BaseActivity implements BusinessResponse
         //Model
         mDataModel = new ShopDetailModel(this);
         mDataModel.addResponseListener(this);
-        mDataModel.fetPreDetail(mShopId, ENUM_SEARCH_ORDER.location_asc);
+        //mDataModel.fetPreDetail(mShopId, ENUM_SEARCH_ORDER.location_asc);
         EventBus.getDefault().register(this);
         LocationManager.getInstance().refreshLocation();
     }

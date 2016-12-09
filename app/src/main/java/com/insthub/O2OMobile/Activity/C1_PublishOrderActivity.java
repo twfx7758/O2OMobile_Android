@@ -180,7 +180,7 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
         mPublish = (Button) findViewById(R.id.c1_publish_order_publish);
         mVoiceView = (FrameLayout) findViewById(R.id.c1_publish_order_voice_view);
         mVoiceAnim = (ImageView) findViewById(R.id.c1_publish_order_voice_anim);
-        mVoiceAnim.setImageResource(R.anim.voice_animation);
+        //mVoiceAnim.setImageResource(R.anim.voice_animation);
         mAnimationDrawable = (AnimationDrawable) mVoiceAnim.getDrawable();
         mAnimationDrawable.setOneShot(false);
         mTitleView.setEnabled(false);
@@ -487,7 +487,7 @@ public class C1_PublishOrderActivity extends BaseActivity implements BusinessRes
                     File file = new File(mFileName);
                     if (file.exists()) {
                         mPlayer = new MediaPlayer();
-                        mVoicePlay.setBackgroundResource(R.anim.record_animation);
+                        //mVoicePlay.setBackgroundResource(R.anim.record_animation);
                         mAnimationDrawable2 = (AnimationDrawable) mVoicePlay.getBackground();
                         mAnimationDrawable2.setOneShot(false);
                         mAnimationDrawable2.start();
