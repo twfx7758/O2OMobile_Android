@@ -59,11 +59,10 @@ public class ShopDetailModel extends BaseModel{
 
                         if(response.succeed == 1){
                             shopDetail = response.shopDetail;
+                            ShopDetailModel.this.OnMessageResponse(url, jo, status);
                         }else{
                             ShopDetailModel.this.callback(url, response.error_code, response.error_desc);
                         }
-                    }else{
-                        ShopDetailModel.this.OnMessageResponse(url, jo, status);
                     }
                 }catch (JSONException e){
 

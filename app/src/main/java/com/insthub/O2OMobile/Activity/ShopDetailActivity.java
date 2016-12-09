@@ -2,18 +2,21 @@ package com.insthub.O2OMobile.Activity;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.BeeFramework.activity.BaseActivity;
 import com.BeeFramework.model.BusinessResponse;
+import com.BeeFramework.view.ToastView;
 import com.external.androidquery.callback.AjaxStatus;
 import com.external.eventbus.EventBus;
 import com.external.maxwin.view.IXListViewListener;
 import com.insthub.O2OMobile.Model.ShopDetailModel;
 import com.insthub.O2OMobile.Model.ShopInfoModel;
 import com.insthub.O2OMobile.Protocol.ApiInterface;
+import com.insthub.O2OMobile.Protocol.ENUM_SEARCH_ORDER;
 import com.insthub.O2OMobile.Protocol.ShopDetailResponse;
 import com.insthub.O2OMobile.R;
 import com.insthub.O2OMobile.Utils.LocationManager;
@@ -54,7 +57,7 @@ public class ShopDetailActivity extends BaseActivity implements BusinessResponse
         //Model
         mDataModel = new ShopDetailModel(this);
         mDataModel.addResponseListener(this);
-
+        mDataModel.fetPreDetail(mShopId, ENUM_SEARCH_ORDER.location_asc);
         EventBus.getDefault().register(this);
         LocationManager.getInstance().refreshLocation();
     }
@@ -65,6 +68,15 @@ public class ShopDetailActivity extends BaseActivity implements BusinessResponse
             if(null != jo){
                 ShopDetailResponse response = new ShopDetailResponse();
                 response.fromJson(jo);
+
+                if(response.succeed == 1 && response.shopDetail != null) {
+                    mTitleTextView.setText(response.shopDetail.ShopTitle);
+                }
+                else{
+                    ToastView toastView = new ToastView(getApplicationContext(), response.error_desc);
+                    toastView.setGravity(Gravity.CENTER, 0, 0);
+                    toastView.show();
+                }
             }
         }
     }
