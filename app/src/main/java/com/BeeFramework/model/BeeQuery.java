@@ -69,11 +69,11 @@ public class BeeQuery<T> extends AQuery {
     {
         if (ENVIROMENT_PRODUCTION == BeeQuery.environment())
         {
-        	return "http://twfx7758.oicp.net:8000";
+        	return "http://www.shopfang.net/api";
         }
         else
         {
-        	return "http://twfx7758.oicp.net:8000/api";
+        	return "http://www.shopfang.net/api";
         }
     }
 

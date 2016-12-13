@@ -1204,12 +1204,7 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 					throw e;
 				}
 			}
-			
-			
-			
 		}
-		
-		
 	}
 	
 	private void network() throws IOException{
@@ -1246,15 +1241,8 @@ public abstract class AbstractAjaxCallback<T, K> implements Runnable{
 				}else{
 					httpPost(url, headers, params, status);
 				}
-				
 			}
-			
 		}
-			
-			
-			
-			
-		
 	}
 	
 	
